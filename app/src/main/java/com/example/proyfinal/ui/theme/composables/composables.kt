@@ -46,6 +46,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import coil.ImageLoader
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
@@ -54,26 +55,9 @@ import com.example.proyfinal.data.archivements
 import com.example.proyfinal.data.trophy
 
 
-fun createGifEnabledLoader(context: Context): ImageLoader {
-    return ImageLoader.Builder(context)
-        .components {
-            if (SDK_INT >= 28) {
-                add(ImageDecoderDecoder.Factory())
-            } else {
-                add(GifDecoder.Factory())
-            }
-        }
-        .build()
-}
 
-@RequiresApi(Build.VERSION_CODES.P)
-private fun createAnimatedImageDrawableFromImageDecoder(context: Context, uri: Uri): AnimatedImageDrawable {
-    val source = ImageDecoder.createSource(context.contentResolver, uri)
-    val drawable = ImageDecoder.decodeDrawable(source)
-    return drawable as AnimatedImageDrawable
-}
 @Composable
-fun trophy_Screen(){
+fun trophy_Screen(navController: NavHostController){
     Box(modifier = Modifier.fillMaxSize()){
         Image(painter = painterResource(id = R.drawable.background),
             contentDescription = "Demono brackground",
@@ -92,14 +76,14 @@ fun trophy_Screen(){
     }
 }
 @Composable
-fun game_screen3(){
+fun game_screen3(navController: NavHostController){
     val list = (1..6).map { it.toString() }
     Box(modifier = Modifier.fillMaxSize()){
         Image(painter = painterResource(id = R.drawable.background),
             contentDescription = "Demono brackground",
             contentScale = ContentScale.FillBounds,
             modifier = Modifier.matchParentSize())
-        FilledIconButton(onClick = { /*TODO*/ },
+        FilledIconButton(onClick = { navController.navigate(Screen.First.route) },
             modifier = Modifier.padding(horizontal = 10.dp, vertical = 50.dp),
         ){ Icon(Icons.Outlined.ArrowBack, contentDescription = "Localized description") }
         LazyVerticalGrid(
@@ -137,7 +121,7 @@ fun game_screen3(){
             contentDescription = "Demono brackground",
             contentScale = ContentScale.FillBounds,
             modifier = Modifier.matchParentSize())
-        FilledIconButton(onClick = { /*TODO*/ },
+        FilledIconButton(onClick = { navController.navigate(Screen.First.route) },
             modifier = Modifier.padding(horizontal = 10.dp, vertical = 50.dp),
         ){ Icon(Icons.Outlined.ArrowBack, contentDescription = "Localized description") }
         LazyVerticalGrid(
@@ -172,14 +156,14 @@ fun game_screen3(){
     }
 }
 @Composable
-fun game_screen2(){
+fun game_screen2(navController: NavHostController){
     val list = (1..4).map { it.toString() }
     Box(modifier = Modifier.fillMaxSize()){
         Image(painter = painterResource(id = R.drawable.background),
             contentDescription = "Demono brackground",
             contentScale = ContentScale.FillBounds,
             modifier = Modifier.matchParentSize())
-        FilledIconButton(onClick = { /*TODO*/ },
+        FilledIconButton(onClick = { navController.navigate(Screen.First.route) },
             modifier = Modifier.padding(horizontal = 10.dp, vertical = 50.dp),
         ){ Icon(Icons.Outlined.ArrowBack, contentDescription = "Localized description") }
         LazyVerticalGrid(
@@ -214,14 +198,14 @@ fun game_screen2(){
     }
 }
 @Composable
-fun game_screen(){
+fun game_screen(navController: NavHostController){
     val list = (1..3).map { it.toString() }
     Box(modifier = Modifier.fillMaxSize()){
         Image(painter = painterResource(id = R.drawable.background),
             contentDescription = "Demono brackground",
             contentScale = ContentScale.FillBounds,
             modifier = Modifier.matchParentSize())
-        FilledIconButton(onClick = { /*TODO*/ },
+        FilledIconButton(onClick = { navController.navigate(Screen.First.route)},
             modifier = Modifier.padding(horizontal = 10.dp, vertical = 50.dp),
         ){ Icon(Icons.Outlined.ArrowBack, contentDescription = "Localized description") }
         LazyVerticalGrid(
@@ -256,13 +240,13 @@ fun game_screen(){
     }
 }
 @Composable
-fun menu_screen(){
+fun menu_screen(navController: NavHostController){
     Box(modifier = Modifier.fillMaxSize()){
         Image(painter = painterResource(id = R.drawable.background),
             contentDescription = "Demono brackground",
             contentScale = ContentScale.FillBounds,
             modifier = Modifier.matchParentSize())
-        FilledIconButton(onClick = { /*TODO*/ },
+        FilledIconButton(onClick = { navController.navigate(Screen.Fifth.route) },
             modifier = Modifier.padding(horizontal = 10.dp, vertical = 50.dp),
         ) {
             Icon(Icons.Outlined.Menu, contentDescription = "Localized description")
@@ -276,17 +260,17 @@ fun menu_screen(){
             Text(text = "EL JUEGO",
                 style = MaterialTheme.typography.displayLarge,
                 modifier = Modifier.padding(16.dp))
-            OutlinedButton(onClick = { /*TODO*/ }) {
+            OutlinedButton(onClick = { navController.navigate(Screen.Second.route) }) {
                 Text(text = "J u e g o  1",
                     style = MaterialTheme.typography.displayMedium,
                 )
             }
-            OutlinedButton(onClick = { /*TODO*/ }) {
+            OutlinedButton(onClick = { navController.navigate(Screen.Third.route) }) {
                 Text(text = "J u e g o  2",
                     style = MaterialTheme.typography.displayMedium,
                 )
             }
-            OutlinedButton(onClick = { /*TODO*/ }) {
+            OutlinedButton(onClick = {navController.navigate(Screen.Fourth.route)}) {
                 Text(text = "J u e g o  3",
                     style = MaterialTheme.typography.displayMedium,
                 )
