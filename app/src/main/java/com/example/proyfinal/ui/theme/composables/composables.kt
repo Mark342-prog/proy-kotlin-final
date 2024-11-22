@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -39,6 +40,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -48,8 +50,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 import coil.ImageLoader
+import coil.compose.AsyncImage
 import coil.decode.GifDecoder
 import coil.decode.ImageDecoderDecoder
+import coil.request.ImageRequest
+import coil.size.Size
 import com.example.proyfinal.R
 import com.example.proyfinal.data.archivements
 import com.example.proyfinal.data.trophy
@@ -58,79 +63,68 @@ import com.example.proyfinal.data.trophy
 
 @Composable
 fun trophy_Screen(navController: NavHostController){
-    Box(modifier = Modifier.fillMaxSize()){
-        Image(painter = painterResource(id = R.drawable.background),
-            contentDescription = "Demono brackground",
-            contentScale = ContentScale.FillBounds,
-            modifier = Modifier.matchParentSize())
-    }
-    Scaffold() {
-            it ->
-        LazyColumn(contentPadding = it) {
-            items(archivements){
-                trophyes(tr = it,
-                    modifier = Modifier.padding(dimensionResource(R.dimen.padding_small)))
+    Box(modifier = Modifier.fillMaxSize()) {
+        Card(Modifier.align(Alignment.TopStart)
+            .padding(top = 30.dp)
+            .padding(30.dp)
+            .fillMaxWidth(fraction = 0.7f)
+            .fillMaxHeight()) {
+            Text(text = "Name", style = MaterialTheme.typography.displayMedium, textAlign = TextAlign.Center)
+        }
+        Box(modifier = Modifier
+            .fillMaxHeight()
+            .fillMaxWidth(fraction = 0.3f)
+            .padding(10.dp)
+            .align(Alignment.TopEnd)
+            .padding(top = 50.dp)){
+            Image(painter = painterResource(id = R.drawable.ic_launcher_background), contentDescription = "foto del jugador" )
+        }
 
+        Box(modifier = Modifier.fillMaxWidth(fraction = 0.7f)){
+            Image(painter = painterResource(id = R.drawable.background),
+                contentDescription = "Demono brackground",
+                contentScale = ContentScale.FillBounds,
+                modifier = Modifier.matchParentSize())
+        }
+        Scaffold(modifier = Modifier
+            .fillMaxHeight(fraction = 0.8f)
+            .padding(20.dp)
+            .align(Alignment.BottomCenter)) {
+                it ->
+            LazyColumn(contentPadding = it) {
+                items(archivements){
+                    trophyes(tr = it,
+                        modifier = Modifier.padding(dimensionResource(R.dimen.padding_small)))
+
+                }
             }
         }
     }
+
 }
 @Composable
 fun game_screen3(navController: NavHostController){
-    val list = (1..6).map { it.toString() }
-    Box(modifier = Modifier.fillMaxSize()){
-        Image(painter = painterResource(id = R.drawable.background),
-            contentDescription = "Demono brackground",
+    val list = listOf(R.drawable.gif_gacha)
+    Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            painter = painterResource(id = R.drawable.background),
+            contentDescription = "Demono background",
             contentScale = ContentScale.FillBounds,
-            modifier = Modifier.matchParentSize())
-        FilledIconButton(onClick = { navController.navigate(Screen.First.route) },
-            modifier = Modifier.padding(horizontal = 10.dp, vertical = 50.dp),
-        ){ Icon(Icons.Outlined.ArrowBack, contentDescription = "Localized description") }
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(3),
-            verticalArrangement = Arrangement.Center,
-            horizontalArrangement = Arrangement.Center,
-            modifier = Modifier
-                .align(alignment = Alignment.Center),
-
-            content = {
-                items(list.size) { index ->
-                    Card(
-                        modifier = Modifier
-                            .padding(4.dp)
-                            .fillMaxWidth()
-                            .height(200.dp),
-
-                        ) {
-                        Text(
-                            text = list[index],
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp,
-                            color = Color(0xFFFFFFFF),
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.padding(16.dp)
-
-                        )
-                    }
-                }
-            }
+            modifier = Modifier.matchParentSize()
         )
-    }
-    Box(modifier = Modifier.fillMaxSize()){
-        Image(painter = painterResource(id = R.drawable.background),
-            contentDescription = "Demono brackground",
-            contentScale = ContentScale.FillBounds,
-            modifier = Modifier.matchParentSize())
-        FilledIconButton(onClick = { navController.navigate(Screen.First.route) },
+
+        FilledIconButton(
+            onClick = { navController.navigate(Screen.First.route) },
             modifier = Modifier.padding(horizontal = 10.dp, vertical = 50.dp),
-        ){ Icon(Icons.Outlined.ArrowBack, contentDescription = "Localized description") }
+        ) {
+            Icon(Icons.Outlined.ArrowBack, contentDescription = "Localized description")
+        }
+
         LazyVerticalGrid(
             columns = GridCells.Fixed(3),
             verticalArrangement = Arrangement.Center,
             horizontalArrangement = Arrangement.Center,
-            modifier = Modifier
-                .align(alignment = Alignment.Center),
-
+            modifier = Modifier.align(alignment = Alignment.Center),
             content = {
                 items(list.size) { index ->
                     Card(
@@ -138,16 +132,15 @@ fun game_screen3(navController: NavHostController){
                             .padding(4.dp)
                             .fillMaxWidth()
                             .height(200.dp),
-
-                        ) {
-                        Text(
-                            text = list[index],
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp,
-                            color = Color(0xFFFFFFFF),
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.padding(16.dp)
-
+                    ) {
+                        // Aquí se carga el GIF utilizando Coil
+                        AsyncImage(
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data(list[index])
+                                .size(Size.ORIGINAL) // Asegúrate de usar el tamaño original para mantener la animación
+                                .build(),
+                            contentDescription = "GIF Image $index",
+                            modifier = Modifier.fillMaxSize()
                         )
                     }
                 }

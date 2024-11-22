@@ -1,9 +1,9 @@
 <resources>
     <string name="Fist_Archive">Primera victoria</string>
-    <string name="Second_Archive">Segunda victoria</string>
     <string name="FirstDes">Ganaste por primera vez</string>
     <string name="SecondDes">Ganaste por primera vez</string>
     <string name="about">About:</string>
-    <string name="NumOfArch">%d</string>
-    <string name="app_name">Proyfinal</string>
+    <string name="NumOfArch" translatable="false">%d</string>
+    <string name="app_name" translatable="false">Proyfinal</string>
+    <string name="Second_Archive">Registro</string>
 </resources>

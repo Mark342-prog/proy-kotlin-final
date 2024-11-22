@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Fist_Archive">First victory</string>
+    <string name="FirstDes">You win for the first time</string>
+    <string name="SecondDes">You win for the first time</string>
+    <string name="about">About:</string>
+    <string name="Second_Archive">Register</string>
+</resources>
