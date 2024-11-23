@@ -104,7 +104,7 @@ fun trophy_Screen(navController: NavHostController){
 }
 @Composable
 fun game_screen3(navController: NavHostController){
-    val list = listOf(R.drawable.gif_gacha)
+    val list = listOf(R.drawable.gif_gacha, R.drawable.gif_gacha, R.drawable.gif_gacha, R.drawable.gif_gacha,  R.drawable.gif_gacha,  R.drawable.gif_gacha )
     Box(modifier = Modifier.fillMaxSize()) {
         Image(
             painter = painterResource(id = R.drawable.background),
@@ -150,22 +150,27 @@ fun game_screen3(navController: NavHostController){
 }
 @Composable
 fun game_screen2(navController: NavHostController){
-    val list = (1..4).map { it.toString() }
-    Box(modifier = Modifier.fillMaxSize()){
-        Image(painter = painterResource(id = R.drawable.background),
-            contentDescription = "Demono brackground",
+    val list = listOf(R.drawable.gif_gacha, R.drawable.gif_gacha, R.drawable.gif_gacha, R.drawable.gif_gacha)
+    Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            painter = painterResource(id = R.drawable.background),
+            contentDescription = "Demono background",
             contentScale = ContentScale.FillBounds,
-            modifier = Modifier.matchParentSize())
-        FilledIconButton(onClick = { navController.navigate(Screen.First.route) },
+            modifier = Modifier.matchParentSize()
+        )
+
+        FilledIconButton(
+            onClick = { navController.navigate(Screen.First.route) },
             modifier = Modifier.padding(horizontal = 10.dp, vertical = 50.dp),
-        ){ Icon(Icons.Outlined.ArrowBack, contentDescription = "Localized description") }
+        ) {
+            Icon(Icons.Outlined.ArrowBack, contentDescription = "Localized description")
+        }
+
         LazyVerticalGrid(
-            columns = GridCells.Fixed(4),
+            columns = GridCells.Fixed(3),
             verticalArrangement = Arrangement.Center,
             horizontalArrangement = Arrangement.Center,
-            modifier = Modifier
-                .align(alignment = Alignment.Center),
-
+            modifier = Modifier.align(alignment = Alignment.Center),
             content = {
                 items(list.size) { index ->
                     Card(
@@ -173,16 +178,15 @@ fun game_screen2(navController: NavHostController){
                             .padding(4.dp)
                             .fillMaxWidth()
                             .height(200.dp),
-
-                        ) {
-                        Text(
-                            text = list[index],
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp,
-                            color = Color(0xFFFFFFFF),
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.padding(16.dp)
-
+                    ) {
+                        // Aquí se carga el GIF utilizando Coil
+                        AsyncImage(
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data(list[index])
+                                .size(Size.ORIGINAL) // Asegúrate de usar el tamaño original para mantener la animación
+                                .build(),
+                            contentDescription = "GIF Image $index",
+                            modifier = Modifier.fillMaxSize()
                         )
                     }
                 }
@@ -192,22 +196,27 @@ fun game_screen2(navController: NavHostController){
 }
 @Composable
 fun game_screen(navController: NavHostController){
-    val list = (1..3).map { it.toString() }
-    Box(modifier = Modifier.fillMaxSize()){
-        Image(painter = painterResource(id = R.drawable.background),
-            contentDescription = "Demono brackground",
+    val list = listOf(R.drawable.gif_gacha, R.drawable.gif_gacha, R.drawable.gif_gacha)
+    Box(modifier = Modifier.fillMaxSize()) {
+        Image(
+            painter = painterResource(id = R.drawable.background),
+            contentDescription = "Demono background",
             contentScale = ContentScale.FillBounds,
-            modifier = Modifier.matchParentSize())
-        FilledIconButton(onClick = { navController.navigate(Screen.First.route)},
+            modifier = Modifier.matchParentSize()
+        )
+
+        FilledIconButton(
+            onClick = { navController.navigate(Screen.First.route) },
             modifier = Modifier.padding(horizontal = 10.dp, vertical = 50.dp),
-        ){ Icon(Icons.Outlined.ArrowBack, contentDescription = "Localized description") }
+        ) {
+            Icon(Icons.Outlined.ArrowBack, contentDescription = "Localized description")
+        }
+
         LazyVerticalGrid(
             columns = GridCells.Fixed(3),
             verticalArrangement = Arrangement.Center,
             horizontalArrangement = Arrangement.Center,
-            modifier = Modifier
-                .align(alignment = Alignment.Center),
-
+            modifier = Modifier.align(alignment = Alignment.Center),
             content = {
                 items(list.size) { index ->
                     Card(
@@ -215,16 +224,15 @@ fun game_screen(navController: NavHostController){
                             .padding(4.dp)
                             .fillMaxWidth()
                             .height(200.dp),
-
-                        ) {
-                        Text(
-                            text = list[index],
-                            fontWeight = FontWeight.Bold,
-                            fontSize = 30.sp,
-                            color = Color(0xFFFFFFFF),
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier.padding(16.dp)
-
+                    ) {
+                        // Aquí se carga el GIF utilizando Coil
+                        AsyncImage(
+                            model = ImageRequest.Builder(LocalContext.current)
+                                .data(list[index])
+                                .size(Size.ORIGINAL) // Asegúrate de usar el tamaño original para mantener la animación
+                                .build(),
+                            contentDescription = "GIF Image $index",
+                            modifier = Modifier.fillMaxSize()
                         )
                     }
                 }
