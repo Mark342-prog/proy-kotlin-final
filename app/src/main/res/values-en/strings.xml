@@ -2,7 +2,8 @@
 <resources>
     <string name="Fist_Archive">First victory</string>
     <string name="FirstDes">You win for the first time</string>
-    <string name="SecondDes">You win for the first time</string>
+    <string name="SecondDes">You win in 3 slots</string>
     <string name="about">About:</string>
     <string name="Second_Archive">Register</string>
+    <string name="button_select">Roll</string>
 </resources>
