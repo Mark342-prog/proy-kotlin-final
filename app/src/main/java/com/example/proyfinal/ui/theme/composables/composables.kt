@@ -51,21 +51,8 @@ import com.example.proyfinal.data.trophy
 @Composable
 fun trophy_Screen(navController: NavHostController){
     Box(modifier = Modifier.fillMaxSize()) {
-        Card(Modifier.align(Alignment.TopStart)
-            .padding(top = 30.dp)
-            .padding(30.dp)
-            .fillMaxWidth(fraction = 0.7f)
-            .fillMaxHeight()) {
-            Text(text = "Name", style = MaterialTheme.typography.displayMedium, textAlign = TextAlign.Center)
-        }
-        Box(modifier = Modifier
-            .fillMaxHeight()
-            .fillMaxWidth(fraction = 0.3f)
-            .padding(10.dp)
-            .align(Alignment.TopEnd)
-            .padding(top = 50.dp)){
-            Image(painter = painterResource(id = R.drawable.ic_launcher_background), contentDescription = "foto del jugador" )
-        }
+        UserInputCard()
+
 
         Box(modifier = Modifier.fillMaxWidth(fraction = 0.7f)){
             Image(painter = painterResource(id = R.drawable.background),
