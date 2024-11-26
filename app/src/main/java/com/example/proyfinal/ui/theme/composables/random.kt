@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 //noinspection UsingMaterialAndMaterial3Libraries
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
@@ -19,6 +20,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.sp
 
@@ -27,10 +29,10 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun RandomImageGrid3() {
-    // Estado para almacenar las imágenes seleccionadas
+
     var selectedImages by remember { mutableStateOf(emptyList<Int>()) }
 
-    // Lista completa de imágenes
+
     val selective = listOf(
         R.drawable.cherry,
         R.drawable.bar,
@@ -51,7 +53,7 @@ fun RandomImageGrid3() {
         R.drawable.wild
     )
 
-    // Usar un Box para centrar el contenido en la pantalla
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -62,30 +64,32 @@ fun RandomImageGrid3() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // Botón para generar imágenes aleatorias
+
             Button(
                 onClick = {
-                    // Generar números aleatorios y seleccionar imágenes
+
                     val randomValues = List(6) { Random.nextInt(0, selective.size) }
                     selectedImages = randomValues.map { index -> selective[index] }
                 },
                 modifier = Modifier
-                    .padding(bottom = 16.dp)
+                    .padding(bottom = 16.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Black)
             ) {
                 Text(text = stringResource(id = R.string.button_select), fontSize = 30.sp)
             }
 
-            // Mostrar la cuadrícula solo si hay imágenes seleccionadas
+
             if (selectedImages.isNotEmpty()) {
                 LazyVerticalGrid(
-                    columns = GridCells.Fixed(3), // Número de columnas en la cuadrícula
+                    columns = GridCells.Fixed(3),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(300.dp), // Altura ajustada para mantener la cuadrícula centrada
+                        .height(300.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    // Usar las imágenes seleccionadas para las tarjetas
+
                     items(selectedImages) { imageResId ->
                         RandomImageCard(imageResId)
                     }
@@ -97,10 +101,10 @@ fun RandomImageGrid3() {
 
 @Composable
 fun RandomImageGrid2() {
-    // Estado para almacenar las imágenes seleccionadas
+
     var selectedImages by remember { mutableStateOf(emptyList<Int>()) }
 
-    // Lista completa de imágenes
+
     val selective = listOf(
         R.drawable.cherry,
         R.drawable.bar,
@@ -121,7 +125,7 @@ fun RandomImageGrid2() {
         R.drawable.wild
     )
 
-    // Usar un Box para centrar el contenido en la pantalla
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -132,30 +136,32 @@ fun RandomImageGrid2() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // Botón para generar imágenes aleatorias
+
             Button(
                 onClick = {
-                    // Generar números aleatorios y seleccionar imágenes
+
                     val randomValues = List(4) { Random.nextInt(0, selective.size) }
                     selectedImages = randomValues.map { index -> selective[index] }
                 },
                 modifier = Modifier
-                    .padding(bottom = 16.dp)
+                    .padding(bottom = 16.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Black)
             ) {
                 Text(text = stringResource(id = R.string.button_select), fontSize = 30.sp)
             }
 
-            // Mostrar la cuadrícula solo si hay imágenes seleccionadas
+
             if (selectedImages.isNotEmpty()) {
                 LazyVerticalGrid(
-                    columns = GridCells.Fixed(4), // Número de columnas en la cuadrícula
+                    columns = GridCells.Fixed(4),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(300.dp), // Altura ajustada para mantener la cuadrícula centrada
+                        .height(300.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    // Usar las imágenes seleccionadas para las tarjetas
+
                     items(selectedImages) { imageResId ->
                         RandomImageCard(imageResId)
                     }
@@ -191,7 +197,7 @@ fun RandomImageGrid1() {
         R.drawable.wild
     )
 
-    // Usar un Box para centrar el contenido en la pantalla
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -202,10 +208,10 @@ fun RandomImageGrid1() {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // Botón para generar imágenes aleatorias
+
             Button(
                 onClick = {
-                    // Generar números aleatorios y seleccionar imágenes
+
                     val randomValues = List(3) { Random.nextInt(0, selective.size) }
                     selectedImages = randomValues.map { index -> selective[index] }
                 },
@@ -215,17 +221,17 @@ fun RandomImageGrid1() {
                 Text(text = stringResource(id = R.string.button_select), fontSize = 30.sp)
             }
 
-            // Mostrar la cuadrícula solo si hay imágenes seleccionadas
+
             if (selectedImages.isNotEmpty()) {
                 LazyVerticalGrid(
-                    columns = GridCells.Fixed(3), // Número de columnas en la cuadrícula
+                    columns = GridCells.Fixed(3),
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(300.dp), // Altura ajustada para mantener la cuadrícula centrada
+                        .height(300.dp),
                     verticalArrangement = Arrangement.spacedBy(8.dp),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    // Usar las imágenes seleccionadas para las tarjetas
+
                     items(selectedImages) { imageResId ->
                         RandomImageCard(imageResId)
                     }
@@ -239,8 +245,8 @@ fun RandomImageCard(imageResId: Int) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
-            .aspectRatio(1f) // Mantener la proporción 1:1 para una tarjeta cuadrada
-            .clickable { /* Acción al hacer clic si se necesita */ },
+            .aspectRatio(1f)
+            .clickable {  },
 
     ) {
         Image(

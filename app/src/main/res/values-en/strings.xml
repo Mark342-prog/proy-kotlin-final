@@ -6,4 +6,12 @@
     <string name="about">About:</string>
     <string name="Second_Archive">Register</string>
     <string name="button_select">Roll</string>
+    <string name="game1">G a m e 1</string>
+    <string name="game2">G a m e 2</string>
+    <string name="game3">G a m e 3</string>
+    <string name="nombre">Name</string>
+    <string name="ask_data">Insert your name and user name</string>
+    <string name="userName">User name</string>
+    <string name="Not_complete">Fill all lines</string>
+    <string name="save">save</string>
 </resources>

@@ -7,4 +7,12 @@
     <string name="app_name" translatable="false">Proyfinal</string>
     <string name="Second_Archive">Registro</string>
     <string name="button_select">Tirar</string>
+    <string name="game1">J u e g o 1</string>
+    <string name="game2">J u e g o 2</string>
+    <string name="game3">J u e g o 3</string>
+    <string name="nombre">Nombre</string>
+    <string name="ask_data">Ingrese sus datos</string>
+    <string name="userName">Nombre de Usuario</string>
+    <string name="Not_complete">Ingrese los datos completos</string>
+    <string name="save">Guardar</string>
 </resources>

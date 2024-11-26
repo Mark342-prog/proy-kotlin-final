@@ -61,7 +61,7 @@ fun trophy_Screen(navController: NavHostController){
                 modifier = Modifier.matchParentSize())
         }
         Scaffold(modifier = Modifier
-            .fillMaxHeight(fraction = 0.8f)
+            .fillMaxHeight(fraction = 0.7f)
             .padding(20.dp)
             .align(Alignment.BottomCenter)) {
                 it ->
@@ -161,17 +161,17 @@ fun menu_screen(navController: NavHostController){
                 style = MaterialTheme.typography.displayLarge,
                 modifier = Modifier.padding(16.dp))
             OutlinedButton(onClick = { navController.navigate(Screen.Second.route) }) {
-                Text(text = "J u e g o  1",
+                Text(text = stringResource(R.string.game1),
                     style = MaterialTheme.typography.displayMedium,
                 )
             }
             OutlinedButton(onClick = { navController.navigate(Screen.Third.route) }) {
-                Text(text = "J u e g o  2",
+                Text(text = stringResource(R.string.game2),
                     style = MaterialTheme.typography.displayMedium,
                 )
             }
             OutlinedButton(onClick = {navController.navigate(Screen.Fourth.route)}) {
-                Text(text = "J u e g o  3",
+                Text(text = stringResource(R.string.game3),
                     style = MaterialTheme.typography.displayMedium,
                 )
             }
@@ -192,7 +192,7 @@ fun Info(
             modifier = Modifier.padding(top = dimensionResource(R.dimen.padding_small))
         )
         Text(
-            text = stringResource(R.string.NumOfArch, dogAge),
+            text = stringResource(R.string.NumOfArch),
         )
     }
 }
