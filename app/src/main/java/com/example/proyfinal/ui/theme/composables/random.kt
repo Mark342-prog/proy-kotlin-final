@@ -216,7 +216,9 @@ fun RandomImageGrid1() {
                     selectedImages = randomValues.map { index -> selective[index] }
                 },
                 modifier = Modifier
-                    .padding(bottom = 16.dp)
+                    .padding(bottom = 16.dp),
+                colors = ButtonDefaults.buttonColors(
+                    containerColor = Color.Black)
             ) {
                 Text(text = stringResource(id = R.string.button_select), fontSize = 30.sp)
             }
