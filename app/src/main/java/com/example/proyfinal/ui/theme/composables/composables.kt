@@ -60,19 +60,7 @@ fun trophy_Screen(navController: NavHostController){
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier.matchParentSize())
         }
-        Scaffold(modifier = Modifier
-            .fillMaxHeight(fraction = 0.7f)
-            .padding(20.dp)
-            .align(Alignment.BottomCenter)) {
-                it ->
-            LazyColumn(contentPadding = it) {
-                items(archivements){
-                    trophyes(tr = it,
-                        modifier = Modifier.padding(dimensionResource(R.dimen.padding_small)))
 
-                }
-            }
-        }
     }
 
 }
